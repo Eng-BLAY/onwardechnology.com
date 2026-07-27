@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Onward Technology – Industrial Digital Transformation & Measurement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+/* ─── RESET & TOKENS ─────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0B1F3A;
+  --navy-mid:#122844;
+  --blue:#1A5EA8;
+  --blue-bright:#2176D2;
+  --cyan:#00C2E0;
+  --gold:#E8A020;
+  --off-white:#F4F6FA;
+  --white:#FFFFFF;
+  --text:#0D1B2A;
+  --text-muted:#4A5568;
+  --border:#D1DCF0;
+  --card-bg:#FFFFFF;
+  --section-alt:#EEF3FB;
+
+  --font-display:'Syne',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+
+  --ease-out:cubic-bezier(0.22,1,0.36,1);
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+}
+
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* ─── SCROLLBAR ──────────────────────────────────────────── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--off-white)}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}
+
+/* ─── UTILITY ────────────────────────────────────────────── */
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+.tag{display:inline-block;font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--cyan);background:rgba(0,194,224,0.12);border:1px solid rgba(0,194,224,0.3);padding:4px 14px;border-radius:100px;margin-bottom:20px}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--blue-bright);color:#fff;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:0.03em;padding:14px 28px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;transition:all 0.25s var(--ease-out);position:relative;overflow:hidden}
+.btn-primary::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.12);opacity:0;transition:opacity 0.2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(26,94,168,0.35)}
+.btn-primary:hover::after{opacity:1}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--blue-bright);font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:0.03em;padding:13px 27px;border-radius:8px;border:2px solid var(--blue-bright);cursor:pointer;text-decoration:none;transition:all 0.25s var(--ease-out)}
+.btn-outline:hover{background:var(--blue-bright);color:#fff;transform:translateY(-2px)}
+
+/* ─── NAV ─────────────────────────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:all 0.4s var(--ease-out)}
+nav.scrolled{background:rgba(11,31,58,0.97);backdrop-filter:blur(20px);box-shadow:0 4px 40px rgba(0,0,0,0.25)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:20px 32px;max-width:1300px;margin:0 auto}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-icon{width:40px;height:40px;background:var(--blue-bright);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.nav-logo-icon::before{content:'O';font-family:var(--font-display);font-weight:800;font-size:20px;color:#fff}
+.nav-logo-icon::after{content:'';position:absolute;bottom:-3px;right:-3px;width:12px;height:12px;background:var(--cyan);border-radius:4px;border:2px solid var(--navy)}
+.nav-logo-text{font-family:var(--font-display);font-weight:800;font-size:18px;color:#fff;letter-spacing:-0.01em;line-height:1}
+.nav-logo-sub{font-size:10px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;font-family:var(--font-display);font-size:14px;font-weight:600;letter-spacing:0.02em;transition:color 0.2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--cyan);transform:scaleX(0);transition:transform 0.2s var(--ease-out);transform-origin:left}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{background:var(--cyan);color:var(--navy)!important;padding:8px 20px;border-radius:6px;font-weight:700!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:#fff;color:var(--navy)!important;transform:none}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:#fff;transition:all 0.3s}
+
+/* ─── HERO ─────────────────────────────────────────────────── */
+#hero{min-height:100vh;background:var(--navy);position:relative;display:flex;align-items:center;overflow:hidden}
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(33,118,210,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(33,118,210,0.07) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
+.hero-blob-1{position:absolute;top:-20%;right:-10%;width:700px;height:700px;background:radial-gradient(circle,rgba(33,118,210,0.25) 0%,transparent 70%);border-radius:50%;animation:blobFloat 8s ease-in-out infinite}
+.hero-blob-2{position:absolute;bottom:-30%;left:-5%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,194,224,0.12) 0%,transparent 70%);border-radius:50%;animation:blobFloat 10s ease-in-out infinite reverse}
+@keyframes blobFloat{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-30px) scale(1.05)}}
+.hero-content{position:relative;z-index:2;padding:120px 0 80px;width:100%}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px;animation:fadeUp 0.8s var(--ease-out) 0.2s both}
+.hero-eyebrow-line{width:40px;height:2px;background:var(--cyan)}
+.hero-eyebrow-text{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--cyan)}
+.hero-headline{font-family:var(--font-display);font-weight:800;font-size:clamp(38px,5vw,60px);line-height:1.05;color:#fff;letter-spacing:-0.02em;margin-bottom:24px;animation:fadeUp 0.8s var(--ease-out) 0.35s both}
+.hero-headline em{font-style:normal;color:var(--cyan)}
+.hero-sub{font-size:18px;line-height:1.7;color:rgba(255,255,255,0.68);max-width:520px;margin-bottom:44px;font-weight:300;animation:fadeUp 0.8s var(--ease-out) 0.5s both}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp 0.8s var(--ease-out) 0.65s both}
+.hero-stats{display:flex;gap:36px;margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.1);animation:fadeUp 0.8s var(--ease-out) 0.8s both}
+.hero-stat-num{font-family:var(--font-display);font-size:36px;font-weight:800;color:#fff;line-height:1}
+.hero-stat-num span{color:var(--cyan)}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:400;letter-spacing:0.05em}
+.hero-visual{animation:fadeIn 1.2s var(--ease-out) 0.4s both}
+.hero-card-stack{position:relative;height:480px}
+.hero-card{position:absolute;background:rgba(255,255,255,0.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:28px;transition:transform 0.3s var(--ease-out)}
+.hero-card:nth-child(1){width:300px;top:0;right:60px;animation:cardFloat 6s ease-in-out infinite}
+.hero-card:nth-child(2){width:280px;top:140px;right:0;animation:cardFloat 7s ease-in-out infinite 1s}
+.hero-card:nth-child(3){width:260px;top:290px;right:80px;animation:cardFloat 5s ease-in-out infinite 0.5s}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.hero-card-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:22px}
+.hero-card-title{font-family:var(--font-display);font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+.hero-card-body{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.5}
+.hero-card-metric{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.1);display:flex;align-items:baseline;gap:6px}
+.hero-card-metric-num{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--cyan)}
+.hero-card-metric-label{font-size:12px;color:rgba(255,255,255,0.45)}
+.scroll-indicator{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:5;animation:fadeIn 1s 1.2s both}
+.scroll-mouse{width:26px;height:40px;border:2px solid rgba(255,255,255,0.3);border-radius:13px;display:flex;justify-content:center;padding-top:6px}
+.scroll-dot{width:4px;height:8px;background:var(--cyan);border-radius:2px;animation:scrollDot 2s ease-in-out infinite}
+@keyframes scrollDot{0%{transform:translateY(0);opacity:1}100%{transform:translateY(14px);opacity:0}}
+.scroll-text{font-size:11px;letter-spacing:0.1em;color:rgba(255,255,255,0.35);text-transform:uppercase}
+
+/* ─── SECTION BASE ───────────────────────────────────────── */
+section{padding:100px 0}
+.section-header{text-align:center;max-width:680px;margin:0 auto 64px}
+.section-title{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,3.5vw,44px);line-height:1.1;letter-spacing:-0.02em;color:var(--navy);margin-bottom:18px}
+.section-sub{font-size:17px;line-height:1.7;color:var(--text-muted);font-weight:300}
+
+/* ─── MARQUEE STRIP ──────────────────────────────────────── */
+.strip{background:var(--blue-bright);padding:14px 0;overflow:hidden}
+.strip-track{display:flex;gap:0;white-space:nowrap;animation:marquee 20s linear infinite}
+.strip-item{display:inline-flex;align-items:center;gap:20px;padding:0 40px;font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.85)}
+.strip-dot{width:6px;height:6px;background:var(--cyan);border-radius:50%;flex-shrink:0}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ─── ABOUT / TRANSFORMATION ──────────────────────────────── */
+#about{background:var(--off-white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-img-wrap{position:relative}
+.about-main-img{width:100%;aspect-ratio:4/3;background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);border-radius:20px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.about-main-img::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.about-diagram{position:relative;z-index:1;padding:40px;width:100%}
+.transform-flow{display:flex;flex-direction:column;gap:0}
+.flow-row{display:flex;align-items:center;gap:0}
+.flow-box{flex:1;text-align:center;padding:16px 10px}
+.flow-from{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:10px}
+.flow-to{background:rgba(0,194,224,0.2);border:1px solid rgba(0,194,224,0.4);border-radius:10px}
+.flow-label-from{font-family:var(--font-display);font-size:13px;font-weight:600;color:rgba(255,255,255,0.5)}
+.flow-label-to{font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--cyan)}
+.flow-arrow{font-size:24px;color:rgba(255,255,255,0.3);padding:0 12px;flex-shrink:0}
+.flow-icon{font-size:20px;margin-bottom:4px}
+.about-badge{position:absolute;bottom:-20px;right:-20px;background:#fff;border-radius:16px;padding:20px 24px;box-shadow:0 20px 60px rgba(11,31,58,0.15);min-width:180px}
+.about-badge-num{font-family:var(--font-display);font-size:40px;font-weight:800;color:var(--blue-bright);line-height:1}
+.about-badge-label{font-size:13px;color:var(--text-muted);margin-top:4px}
+.about-text h2{font-family:var(--font-display);font-weight:800;font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-0.02em;color:var(--navy);margin-bottom:20px}
+.about-text p{font-size:16px;line-height:1.75;color:var(--text-muted);margin-bottom:20px;font-weight:300}
+.formula-box{background:var(--navy);border-radius:14px;padding:24px 28px;margin:28px 0}
+.formula-box p{color:rgba(255,255,255,0.5)!important;font-size:13px;margin-bottom:8px!important;text-transform:uppercase;letter-spacing:0.08em;font-weight:600}
+.formula-text{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--cyan);letter-spacing:0.02em;line-height:1.6}
+
+/* ─── SERVICES ──────────────────────────────────────────── */
+#services{background:var(--white)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{background:var(--card-bg);border:1px solid var(--border);border-radius:18px;padding:36px 32px;transition:all 0.35s var(--ease-out);position:relative;overflow:hidden;cursor:default}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue-bright),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform 0.4s var(--ease-out)}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(11,31,58,0.1);border-color:var(--blue-bright)}
+.service-card:hover::before{transform:scaleX(1)}
+.service-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:22px;transition:transform 0.3s var(--ease-spring)}
+.service-card:hover .service-icon{transform:scale(1.1) rotate(5deg)}
+.service-title{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--navy);margin-bottom:12px}
+.service-desc{font-size:14px;line-height:1.7;color:var(--text-muted);font-weight:300;margin-bottom:22px}
+.service-tags{display:flex;flex-wrap:wrap;gap:8px}
+.service-tag{font-size:11px;font-weight:600;color:var(--blue-bright);background:rgba(26,94,168,0.08);border-radius:100px;padding:4px 12px;letter-spacing:0.03em}
+.service-card.featured{background:var(--navy);border-color:var(--navy)}
+.service-card.featured .service-title{color:#fff}
+.service-card.featured .service-desc{color:rgba(255,255,255,0.6)}
+.service-card.featured .service-tag{color:var(--cyan);background:rgba(0,194,224,0.12)}
+.service-card.featured:hover{border-color:var(--cyan)}
+
+/* ─── PARTNERS ──────────────────────────────────────────── */
+#partners{background:var(--section-alt);padding:100px 0}
+.partners-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:60px}
+.partner-card{background:var(--white);border:1px solid var(--border);border-radius:24px;padding:48px;position:relative;overflow:hidden;transition:all 0.3s var(--ease-out)}
+.partner-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(33,118,210,0.04) 0%,transparent 60%);pointer-events:none}
+.partner-card:hover{box-shadow:0 20px 60px rgba(11,31,58,0.1);transform:translateY(-4px)}
+.partner-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-bright);background:rgba(26,94,168,0.1);padding:5px 14px;border-radius:100px;margin-bottom:24px}
+.partner-logo-area{height:70px;display:flex;align-items:center;margin-bottom:24px}
+.partner-logo-text{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--navy);letter-spacing:-0.02em}
+.partner-logo-text span{color:var(--blue-bright)}
+.partner-desc{font-size:15px;line-height:1.75;color:var(--text-muted);font-weight:300;margin-bottom:28px}
+.partner-highlights{display:flex;flex-direction:column;gap:12px}
+.partner-hl{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--text-muted)}
+.partner-hl-dot{width:8px;height:8px;background:var(--cyan);border-radius:50%;flex-shrink:0;margin-top:5px}
+.partner-link{display:inline-flex;align-items:center;gap:8px;color:var(--blue-bright);font-family:var(--font-display);font-size:13px;font-weight:700;text-decoration:none;margin-top:28px;padding:10px 20px;border:1.5px solid var(--blue-bright);border-radius:8px;transition:all 0.2s}
+.partner-link:hover{background:var(--blue-bright);color:#fff}
+
+/* ─── SOLUTIONS ─────────────────────────────────────────── */
+#solutions{background:var(--navy);padding:100px 0;position:relative;overflow:hidden}
+#solutions::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 50%,rgba(33,118,210,0.2),transparent 70%)}
+#solutions .section-title{color:#fff}
+#solutions .section-sub{color:rgba(255,255,255,0.55)}
+.solutions-list{display:flex;flex-direction:column;gap:2px;position:relative;z-index:1}
+.solution-item{display:grid;grid-template-columns:80px 1fr auto;align-items:center;gap:40px;padding:32px 40px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;background:rgba(255,255,255,0.03);transition:all 0.3s var(--ease-out);cursor:default}
+.solution-item:hover{background:rgba(33,118,210,0.15);border-color:rgba(33,118,210,0.4);transform:translateX(8px)}
+.solution-num{font-family:var(--font-display);font-size:42px;font-weight:800;color:rgba(255,255,255,0.08);line-height:1}
+.solution-content h3{font-family:var(--font-display);font-size:20px;font-weight:700;color:#fff;margin-bottom:8px}
+.solution-content p{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.6;font-weight:300}
+.solution-arrow{width:44px;height:44px;border:1.5px solid rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);font-size:18px;flex-shrink:0;transition:all 0.3s}
+.solution-item:hover .solution-arrow{border-color:var(--cyan);color:var(--cyan);transform:rotate(45deg)}
+
+/* ─── INDUSTRIES ─────────────────────────────────────────── */
+#industries{background:var(--white);padding:100px 0}
+.industries-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-radius:20px;overflow:hidden;border:1px solid var(--border)}
+.industry-cell{background:var(--white);padding:40px 36px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:all 0.3s var(--ease-out);position:relative;overflow:hidden}
+.industry-cell:nth-child(3n){border-right:none}
+.industry-cell:nth-child(n+4){border-bottom:none}
+.industry-cell::before{content:'';position:absolute;bottom:0;left:0;right:0;height:0;background:linear-gradient(to top,rgba(26,94,168,0.06),transparent);transition:height 0.4s}
+.industry-cell:hover{background:var(--off-white)}
+.industry-cell:hover::before{height:100%}
+.industry-emoji{font-size:36px;margin-bottom:16px;display:block}
+.industry-name{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.industry-desc{font-size:13px;color:var(--text-muted);line-height:1.6;font-weight:300}
+
+/* ─── PROCESS ────────────────────────────────────────────── */
+#process{background:var(--section-alt);padding:100px 0}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.process-steps::before{content:'';position:absolute;top:40px;left:calc(12.5%);right:calc(12.5%);height:2px;background:linear-gradient(90deg,var(--border) 0%,var(--blue-bright) 50%,var(--cyan) 100%);z-index:0}
+.process-step{padding:0 20px;text-align:center;position:relative;z-index:1}
+.step-number{width:80px;height:80px;border-radius:50%;background:var(--white);border:3px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--navy);transition:all 0.3s var(--ease-out);position:relative}
+.step-number::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid transparent;transition:all 0.3s}
+.process-step:hover .step-number{background:var(--blue-bright);color:#fff;border-color:var(--blue-bright);transform:scale(1.1)}
+.process-step:hover .step-number::after{border-color:rgba(33,118,210,0.3)}
+.step-party{font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px}
+.step-title{font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.step-desc{font-size:13px;color:var(--text-muted);line-height:1.65;font-weight:300}
+
+/* ─── PRODUCTS ───────────────────────────────────────────── */
+#products{background:var(--white);padding:100px 0}
+.products-intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:64px;padding:48px;background:var(--navy);border-radius:24px}
+.products-intro h3{font-family:var(--font-display);font-size:clamp(24px,2.5vw,34px);font-weight:800;color:#fff;margin-bottom:16px;letter-spacing:-0.02em}
+.products-intro p{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.6);font-weight:300}
+.products-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.product-card{background:var(--off-white);border:1px solid var(--border);border-radius:16px;padding:32px;transition:all 0.3s var(--ease-out)}
+.product-card:hover{box-shadow:0 16px 48px rgba(11,31,58,0.08);border-color:var(--blue-bright);background:#fff}
+.product-cat{font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-bright);margin-bottom:10px}
+.product-name{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.product-desc{font-size:14px;color:var(--text-muted);line-height:1.65;font-weight:300}
+.bruker-tag{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:0.05em}
+.bruker-tag::before{content:'★';font-size:10px}
+
+/* ─── METRICS ────────────────────────────────────────────── */
+#metrics{background:linear-gradient(135deg,var(--blue-bright) 0%,var(--navy) 100%);padding:80px 0}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.1)}
+.metric-cell{padding:48px 32px;text-align:center;border-right:1px solid rgba(255,255,255,0.1)}
+.metric-cell:last-child{border-right:none}
+.metric-num{font-family:var(--font-display);font-size:52px;font-weight:800;color:#fff;line-height:1;margin-bottom:8px}
+.metric-num span{color:var(--cyan)}
+.metric-label{font-size:14px;color:rgba(255,255,255,0.55);letter-spacing:0.03em;font-weight:300}
+
+/* ─── TESTIMONIAL / CTA ──────────────────────────────────── */
+#cta{background:var(--off-white);padding:100px 0}
+.cta-box{background:var(--navy);border-radius:28px;padding:80px 60px;text-align:center;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(33,118,210,0.3),transparent 70%);border-radius:50%}
+.cta-box::after{content:'';position:absolute;bottom:-80px;left:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(0,194,224,0.15),transparent 70%);border-radius:50%}
+.cta-box>*{position:relative;z-index:1}
+.cta-box h2{font-family:var(--font-display);font-size:clamp(28px,3.5vw,48px);font-weight:800;color:#fff;letter-spacing:-0.02em;margin-bottom:20px;line-height:1.1}
+.cta-box p{font-size:17px;color:rgba(255,255,255,0.6);max-width:560px;margin:0 auto 40px;line-height:1.7;font-weight:300}
+.cta-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.btn-cyan{background:var(--cyan);color:var(--navy);font-family:var(--font-display);font-weight:700;font-size:15px;padding:15px 32px;border-radius:8px;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all 0.25s var(--ease-out);letter-spacing:0.02em}
+.btn-cyan:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,194,224,0.4);background:#fff}
+
+/* ─── CONTACT ────────────────────────────────────────────── */
+#contact{background:var(--white);padding:100px 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.contact-info h2{font-family:var(--font-display);font-size:clamp(28px,3vw,40px);font-weight:800;color:var(--navy);margin-bottom:18px;letter-spacing:-0.02em}
+.contact-info p{font-size:16px;color:var(--text-muted);line-height:1.75;margin-bottom:36px;font-weight:300}
+.contact-details{display:flex;flex-direction:column;gap:20px}
+.contact-detail{display:flex;align-items:flex-start;gap:16px}
+.contact-icon{width:44px;height:44px;background:rgba(33,118,210,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.contact-detail-label{font-family:var(--font-display);font-size:12px;font-weight:700;color:var(--blue-bright);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px}
+.contact-detail-value{font-size:15px;color:var(--navy);font-weight:500}
+.contact-form{background:var(--off-white);border-radius:20px;padding:48px}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:14px 18px;font-family:var(--font-body);font-size:15px;color:var(--text);outline:none;transition:border-color 0.2s;font-weight:300}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue-bright);box-shadow:0 0 0 4px rgba(33,118,210,0.08)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+footer{background:var(--navy);padding:80px 0 40px;color:#fff}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px}
+.footer-brand p{font-size:14px;color:rgba(255,255,255,0.45);line-height:1.7;margin-top:16px;max-width:280px;font-weight:300}
+.footer-col h4{font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:14px;transition:color 0.2s;font-weight:300}
+.footer-col a:hover{color:var(--cyan)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.08);padding-top:36px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(255,255,255,0.35)}
+.footer-partners{display:flex;align-items:center;gap:20px}
+.partner-chip{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:6px 14px;font-family:var(--font-display);font-size:11px;font-weight:700;letter-spacing:0.05em;color:rgba(255,255,255,0.5)}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(24px);transition:all 0.7s var(--ease-out)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+.reveal-delay-6{transition-delay:0.6s}
+
+/* ─── MOBILE MENU ────────────────────────────────────────── */
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--navy);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:#fff;font-family:var(--font-display);font-size:24px;font-weight:700;text-decoration:none;letter-spacing:-0.01em}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:1024px){
+  .hero-grid,.about-grid,.products-intro,.contact-grid,.footer-grid{grid-template-columns:1fr}
+  .hero-visual,.about-badge{display:none}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .industries-grid{grid-template-columns:repeat(2,1fr)}
+  .industry-cell:nth-child(2n){border-right:none}
+  .industry-cell:nth-child(n+5){border-bottom:none}
+  .process-steps{grid-template-columns:repeat(2,1fr);gap:40px}
+  .process-steps::before{display:none}
+  .metrics-grid{grid-template-columns:repeat(2,1fr)}
+  .metric-cell:nth-child(2){border-right:none}
+  .metric-cell:nth-child(n+3){border-top:1px solid rgba(255,255,255,0.1)}
+  .partners-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .container{padding:0 20px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .services-grid{grid-template-columns:1fr}
+  .industries-grid{grid-template-columns:1fr}
+  .industry-cell:nth-child(n){border-right:none;border-bottom:1px solid var(--border)}
+  .solution-item{grid-template-columns:50px 1fr;gap:20px}
+  .solution-arrow{display:none}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .cta-box{padding:48px 28px}
+  .form-row{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:16px;text-align:center}
+  .products-grid{grid-template-columns:1fr}
+  section{padding:70px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- ── MOBILE MENU ─────────────────────────────────────── -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#solutions" onclick="closeMobile()">Solutions</a>
+  <a href="#products" onclick="closeMobile()">Products</a>
+  <a href="#partners" onclick="closeMobile()">Partners</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- ── NAV ─────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-icon"></div>
+      <div>
+        <div class="nav-logo-text">Onward Technology</div>
+        <div class="nav-logo-sub">Industrial Digital Transformation</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#partners">Partners</a></li>
+      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMobile()" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-blob-1"></div>
+  <div class="hero-blob-2"></div>
+  <div class="container hero-content">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-line"></div>
+          <span class="hero-eyebrow-text">Africa's Industrial Transformation Partner</span>
+        </div>
+        <h1 class="hero-headline">
+          Powering Africa's<br><em>Industrial Future</em><br>with Data & Intelligence
+        </h1>
+        <p class="hero-sub">We integrate digital platforms, industrial data systems, and advanced measurement technologies — delivering real-time visibility, predictive intelligence, and world-class operations across Africa.</p>
+        <div class="hero-actions">
+          <a href="#services" class="btn-primary">Explore Services <span>→</span></a>
+          <a href="#contact" class="btn-outline" style="color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.25)">Get In Touch</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num">6<span>+</span></div>
+            <div class="hero-stat-label">Service Lines</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">3<span>→</span>1</div>
+            <div class="hero-stat-label">Integrated Capability</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">4<span>x</span></div>
+            <div class="hero-stat-label">Transformation Stages</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="hero-card">
+            <div class="hero-card-icon" style="background:rgba(33,118,210,0.2)">📊</div>
+            <div class="hero-card-title">Real-Time Data Intelligence</div>
+            <div class="hero-card-body">Live operational dashboards and AI-driven analytics for immediate insight.</div>
+            <div class="hero-card-metric">
+              <span class="hero-card-metric-num">10–20%</span>
+              <span class="hero-card-metric-label">efficiency gains</span>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-icon" style="background:rgba(0,194,224,0.2)">🔬</div>
+            <div class="hero-card-title">Precision Measurement</div>
+            <div class="hero-card-body">Bruker-certified analytical instruments and process measurement systems.</div>
+            <div class="hero-card-metric">
+              <span class="hero-card-metric-num">100%</span>
+              <span class="hero-card-metric-label">calibrated & certified</span>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="hero-card-icon" style="background:rgba(232,160,32,0.2)">⚙️</div>
+            <div class="hero-card-title">System Integration</div>
+            <div class="hero-card-body">Connecting instruments, data systems, and digital platforms seamlessly.</div>
+            <div class="hero-card-metric">
+              <span class="hero-card-metric-num">End-to-end</span>
+              <span class="hero-card-metric-label">visibility</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+    <span class="scroll-text">Scroll</span>
+  </div>
+</section>
+
+<!-- ── MARQUEE ────────────────────────────────────────────── -->
+<div class="strip">
+  <div class="strip-track" id="strip-track">
+    <span class="strip-item"><span class="strip-dot"></span>Industrial Digital Transformation</span>
+    <span class="strip-item"><span class="strip-dot"></span>Real-Time Data Systems</span>
+    <span class="strip-item"><span class="strip-dot"></span>Precision Measurement & Analytics</span>
+    <span class="strip-item"><span class="strip-dot"></span>System Integration</span>
+    <span class="strip-item"><span class="strip-dot"></span>IIoT-Enabled Operations</span>
+    <span class="strip-item"><span class="strip-dot"></span>Industry 4.0 Maturity Assessments</span>
+    <span class="strip-item"><span class="strip-dot"></span>Smart Manufacturing Enablement</span>
+    <span class="strip-item"><span class="strip-dot"></span>Bruker Instrumentation Partner</span>
+    <span class="strip-item"><span class="strip-dot"></span>Onward Partners — Africa Deployment</span>
+    <span class="strip-item"><span class="strip-dot"></span>Industrial Digital Transformation</span>
+    <span class="strip-item"><span class="strip-dot"></span>Real-Time Data Systems</span>
+    <span class="strip-item"><span class="strip-dot"></span>Precision Measurement & Analytics</span>
+    <span class="strip-item"><span class="strip-dot"></span>System Integration</span>
+    <span class="strip-item"><span class="strip-dot"></span>IIoT-Enabled Operations</span>
+    <span class="strip-item"><span class="strip-dot"></span>Industry 4.0 Maturity Assessments</span>
+    <span class="strip-item"><span class="strip-dot"></span>Smart Manufacturing Enablement</span>
+    <span class="strip-item"><span class="strip-dot"></span>Bruker Instrumentation Partner</span>
+    <span class="strip-item"><span class="strip-dot"></span>Onward Partners — Africa Deployment</span>
+  </div>
+</div>
+
+<!-- ── ABOUT ──────────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-main-img">
+          <div class="about-diagram">
+            <div class="transform-flow">
+              <div class="flow-row">
+                <div class="flow-box flow-from"><div class="flow-icon">📋</div><div class="flow-label-from">Manual</div></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box flow-to"><div class="flow-icon">💻</div><div class="flow-label-to">Digital</div></div>
+              </div>
+              <div style="height:16px"></div>
+              <div class="flow-row">
+                <div class="flow-box flow-from"><div class="flow-icon">🚨</div><div class="flow-label-from">Reactive</div></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box flow-to"><div class="flow-icon">🔮</div><div class="flow-label-to">Predictive</div></div>
+              </div>
+              <div style="height:16px"></div>
+              <div class="flow-row">
+                <div class="flow-box flow-from"><div class="flow-icon">🧩</div><div class="flow-label-from">Fragmented</div></div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-box flow-to"><div class="flow-icon">🔗</div><div class="flow-label-to">Integrated</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-badge">
+          <div class="about-badge-num">4</div>
+          <div class="about-badge-label">Industry Sectors<br>Actively Served</div>
+        </div>
+      </div>
+      <div class="about-text reveal reveal-delay-2">
+        <span class="tag">Who We Are</span>
+        <h2>Africa's Bridge Between Global Technology & Local Execution</h2>
+        <p>Onward Technology is an industrial digital solutions and instrumentation company focused on enabling smart manufacturing and intelligent operations across Africa. We specialize in integrating digital transformation platforms, industrial data systems, and advanced measurement technologies.</p>
+        <p>Our approach combines global best practices with deep local execution capability — positioning us as a trusted implementation partner, not just an advisor.</p>
+        <div class="formula-box">
+          <p>Our Core Formula</p>
+          <div class="formula-text">
+            Real-Time Data + Advanced Measurement + Intelligent Systems<br>
+            = Data → Insight → Decision → Action
+          </div>
+        </div>
+        <a href="#services" class="btn-primary">Our Services <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ───────────────────────────────────────────── -->
+<section id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">What We Do</span>
+      <h2 class="section-title">Six Integrated Service Lines</h2>
+      <p class="section-sub">From strategy through deployment and beyond — every service line connects to deliver a unified transformation outcome.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon" style="background:rgba(33,118,210,0.1)">🏭</div>
+        <div class="service-title">Industrial Digital Transformation</div>
+        <div class="service-desc">We guide organizations from their current state to a fully digital, data-driven operation — with structured roadmaps, maturity assessments, and smart factory enablement grounded in the Industrie 4.0 Maturity Index framework.</div>
+        <div class="service-tags">
+          <span class="service-tag">Industry 4.0 Strategy</span>
+          <span class="service-tag">Digital Maturity</span>
+          <span class="service-tag">Smart Factory</span>
+        </div>
+      </div>
+      <div class="service-card featured reveal reveal-delay-1">
+        <div class="service-icon" style="background:rgba(0,194,224,0.15)">📡</div>
+        <div class="service-title">Industrial Data & Intelligence</div>
+        <div class="service-desc">Real-time monitoring, data acquisition systems, operational dashboards, and AI-driven insights that transform raw operational data into decisions. Data-driven factories unlock 10–20% efficiency gains through real-time transparency.</div>
+        <div class="service-tags">
+          <span class="service-tag">Real-Time Monitoring</span>
+          <span class="service-tag">AI Insights</span>
+          <span class="service-tag">Dashboards</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon" style="background:rgba(232,160,32,0.12)">🔬</div>
+        <div class="service-title">Measurement & Analytical Solutions</div>
+        <div class="service-desc">Supply, deployment, and support of precision process and laboratory instruments — including Bruker's world-leading analytical technologies for elemental analysis, spectroscopy, and quality diagnostics.</div>
+        <div class="service-tags">
+          <span class="service-tag">Process Instruments</span>
+          <span class="service-tag">Lab Analytics</span>
+          <span class="service-tag">Bruker Partner</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon" style="background:rgba(0,194,224,0.1)">🌐</div>
+        <div class="service-title">Digital Platforms & Smart Operations</div>
+        <div class="service-desc">Deployment of industrial digital platforms — MES, SCADA, connected operations systems, and IIoT environments that unite physical assets and digital intelligence into one coherent operational picture.</div>
+        <div class="service-tags">
+          <span class="service-tag">IIoT</span>
+          <span class="service-tag">Connected Operations</span>
+          <span class="service-tag">Digital Backbone</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-4">
+        <div class="service-icon" style="background:rgba(26,94,168,0.1)">🔗</div>
+        <div class="service-title">System Integration</div>
+        <div class="service-desc">Our core strength — connecting instruments, data systems, and digital platforms into a unified whole. We ensure every technology component works together, eliminating fragmentation and delivering end-to-end operational visibility.</div>
+        <div class="service-tags">
+          <span class="service-tag">IT/OT Integration</span>
+          <span class="service-tag">End-to-End</span>
+          <span class="service-tag">Unified Visibility</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-5">
+        <div class="service-icon" style="background:rgba(232,160,32,0.12)">🎓</div>
+        <div class="service-title">Training & Capability Development</div>
+        <div class="service-desc">Industry 4.0 training, digital adoption programs, and technology enablement workshops that build lasting internal capability — ensuring technology investments continue to deliver value long after deployment.</div>
+        <div class="service-tags">
+          <span class="service-tag">Industry 4.0</span>
+          <span class="service-tag">Digital Adoption</span>
+          <span class="service-tag">Workshops</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOLUTIONS ──────────────────────────────────────────── -->
+<section id="solutions">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">How We Work</span>
+      <h2 class="section-title">The Full Transformation Lifecycle</h2>
+      <p class="section-sub">Working with our Operational Excellence ecosystem partner, we cover every phase — from initial diagnosis to sustained optimization.</p>
+    </div>
+    <div class="solutions-list">
+      <div class="solution-item reveal reveal-delay-1">
+        <div class="solution-num">01</div>
+        <div class="solution-content">
+          <h3>Diagnose — Understand Your Current State</h3>
+          <p>Digital maturity assessments using the globally recognized Industrie 4.0 Maturity Index benchmark 350+ manufacturing sites. We identify where you are and pinpoint the highest-value improvement levers across your operations.</p>
+        </div>
+        <div class="solution-arrow">→</div>
+      </div>
+      <div class="solution-item reveal reveal-delay-2">
+        <div class="solution-num">02</div>
+        <div class="solution-content">
+          <h3>Design — Build a Transformation Roadmap</h3>
+          <p>Tailored transformation strategies aligned with your culture, operating model, and financial realities. We design phased roadmaps that are both ambitious and achievable — with clear KPIs and governance structures at every stage.</p>
+        </div>
+        <div class="solution-arrow">→</div>
+      </div>
+      <div class="solution-item reveal reveal-delay-3">
+        <div class="solution-num">03</div>
+        <div class="solution-content">
+          <h3>Deploy — Implement with Precision</h3>
+          <p>Onward Technology's core role — the hands-on deployment of digital platforms, measurement systems, and data intelligence infrastructure. We deliver working solutions, not just reports. Every deployment is integrated from instruments to dashboards.</p>
+        </div>
+        <div class="solution-arrow">→</div>
+      </div>
+      <div class="solution-item reveal reveal-delay-4">
+        <div class="solution-num">04</div>
+        <div class="solution-content">
+          <h3>Optimize — Sustain and Scale the Gains</h3>
+          <p>Continuous performance optimization, maintenance support, and scaling of successful pilots into enterprise-wide transformation. We embed transformation into culture, processes, and organization — creating improvements that endure.</p>
+        </div>
+        <div class="solution-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── INDUSTRIES ─────────────────────────────────────────── -->
+<section id="industries">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag">Industries We Serve</span>
+      <h2 class="section-title">Built for Africa's Industrial Sectors</h2>
+      <p class="section-sub">Our solutions are tailored to the specific challenges and opportunities of each industrial vertical.</p>
+    </div>
+    <div class="industries-grid">
+      <div class="industry-cell reveal">
+        <span class="industry-emoji">🏗️</span>
+        <div class="industry-name">Manufacturing</div>
+        <div class="industry-desc">Smart factory enablement, production monitoring, quality systems, and Industry 4.0 transformation for discrete and process manufacturers.</div>
+      </div>
+      <div class="industry-cell reveal reveal-delay-1">
+        <span class="industry-emoji">⛽</span>
+        <div class="industry-name">Oil & Gas / Energy</div>
+        <div class="industry-desc">Process monitoring, predictive maintenance, safety system integration, and real-time operational analytics for upstream and downstream operations.</div>
+      </div>
+      <div class="industry-cell reveal reveal-delay-2">
+        <span class="industry-emoji">⛏️</span>
+        <div class="industry-name">Mining & Minerals</div>
+        <div class="industry-desc">Real-time ore analysis using Bruker XRF technology, equipment monitoring, safety management, and production optimization across mining operations.</div>
+      </div>
+      <div class="industry-cell reveal reveal-delay-3">
+        <span class="industry-emoji">🍫</span>
+        <div class="industry-name">Food & Beverage Processing</div>
+        <div class="industry-desc">Quality control, traceability systems, and food safety analytics — including Bruker NIR and NMR-based authentication for dairy, beverages, and processed foods.</div>
+      </div>
+      <div class="industry-cell reveal reveal-delay-4">
+        <span class="industry-emoji">💧</span>
+        <div class="industry-name">Utilities</div>
+        <div class="industry-desc">Asset monitoring, distribution network intelligence, energy management systems, and operational efficiency solutions for water and power utilities.</div>
+      </div>
+      <div class="industry-cell reveal reveal-delay-5">
+        <span class="industry-emoji">🧪</span>
+        <div class="industry-name">Laboratories & Research</div>
+        <div class="industry-desc">Full analytical instrument supply, calibration, and lab data management systems for research institutions, quality labs, and testing facilities.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PARTNERS ───────────────────────────────────────────── -->
+<section id="partners">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Strategic Partnerships</span>
+      <h2 class="section-title">World-Class Technology, Local Execution</h2>
+      <p class="section-sub">Onward Technology's global partnerships give African industry access to the world's leading industrial transformation methodologies and analytical instruments — deployed locally, with full technical support.</p>
+    </div>
+    <div class="partners-grid">
+      <!-- ONWARD PARTNERS -->
+      <div class="partner-card reveal">
+        <div class="partner-badge">🤝 Technology & Methodology Partner</div>
+        <div class="partner-logo-area">
+          <div class="partner-logo-text">Onward <span>Partners</span></div>
+        </div>
+        <p class="partner-desc">Onward Partners is a spin-off from the Industrie 4.0 Maturity Center at RWTH Aachen Campus — the scientific home of the globally recognized "Industrie 4.0 Maturity Index," one of the world's leading management frameworks for digital transformation of factories, applied across 250+ sites worldwide.</p>
+        <div class="partner-highlights">
+          <div class="partner-hl"><div class="partner-hl-dot"></div><span>Industry 4.0 Maturity Index: the global standard framework for assessing and scaling digital transformation in manufacturing</span></div>
+          <div class="partner-hl"><div class="partner-hl-dot"></div><span>350+ manufacturing companies use the Onward Partners platform to manage their transformation progress</span></div>
+          <div class="partner-hl"><div class="partner-hl-dot"></div><span>Onward Technology delivers Onward Partners' methodology across Africa — from initial assessment to enterprise-wide deployment</span></div>
+          <div class="partner-hl"><div class="partner-hl-dot"></div><span>Research-based consulting: combining proven frameworks with hands-on implementation, not endless advisory projects</span></div>
+        </div>
+        <a href="https://onward.partners" target="_blank" class="partner-link">Visit Onward Partners →</a>
+      </div>
+      <!-- BRUKER -->
+      <div class="partner-card reveal reveal-delay-2">
+        <div class="partner-badge">🔬 Instrumentation Partner</div>
+        <div class="partner-logo-area">
+          <div class="partner-logo-text"><span>Bruker</span> Corporation</div>
+        </div>
+        <p class="partner-desc">Bruker is a global leader in high-performance scientific instruments and analytical solutions, enabling scientific advancement in life sciences, materials research, and industrial quality control. With world-class product lines spanning XRF, NMR, FT-IR, and MALDI-TOF, Bruker's technology is the gold standard for precision measurement across industrial and laboratory environments.</p>
+        <div class="partner-highlights">
+          <div class="partner-hl"><div class="partner-hl-dot"></div><span>TITAN handheld XRF analyzers for industrial material identification — dust, water, and shock-resistant for daily field use</span></div>
+          <div class="partner-hl"><div class="partner-hl-dot"></div><span>MOVE-T FT-NIR liquid dairy analyzer for rapid quality control of milk and plant-based alternatives</span></div>
+          <div class="partner-hl"><div class="partner-hl-dot"></div><span>S8 TIGER WDXRF spectrometer for advanced elemental analysis in industry and research</span></div>
+          <div class="partner-hl"><div class="partner-hl-dot"></div><span>Onward Technology supplies, deploys, calibrates, and supports the full Bruker portfolio across African industrial and laboratory markets</span></div>
+        </div>
+        <a href="https://www.bruker.com" target="_blank" class="partner-link">Visit Bruker →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ─────────────────────────────────────────────── -->
+<section id="process">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Our Ecosystem Model</span>
+      <h2 class="section-title">A Complete Lifecycle Partnership</h2>
+      <p class="section-sub">We work with an Operational Excellence partner to deliver the complete transformation lifecycle that neither firm could offer alone.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-number">01</div>
+        <div class="step-party">OpEx Partner</div>
+        <div class="step-title">Diagnose</div>
+        <div class="step-desc">Digital maturity assessment, gap analysis, and opportunity identification using the Industrie 4.0 Maturity Index framework and Onward Partners methodology.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-number">02</div>
+        <div class="step-party">OpEx Partner + Onward Tech</div>
+        <div class="step-title">Design</div>
+        <div class="step-desc">Transformation roadmap design, technology architecture, solution selection, and program governance — aligned to business strategy and local realities.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-number">03</div>
+        <div class="step-party">Onward Technology</div>
+        <div class="step-title">Deploy</div>
+        <div class="step-desc">Full technology deployment: digital platforms, measurement systems, data infrastructure, system integration, and workforce enablement. We deliver outcomes, not reports.</div>
+      </div>
+      <div class="process-step reveal reveal-delay-4">
+        <div class="step-number">04</div>
+        <div class="step-party">Both Partners</div>
+        <div class="step-title">Optimize</div>
+        <div class="step-desc">Continuous performance improvement, support contracts, scaling of pilots, capability building, and KPI-driven optimization to sustain and grow transformation value.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ───────────────────────────────────────────── -->
+<section id="products">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="tag">Products & Instruments</span>
+      <h2 class="section-title">World-Leading Instrumentation, Locally Deployed</h2>
+      <p class="section-sub">As an authorized Bruker partner, Onward Technology supplies and deploys the full spectrum of precision analytical and process instruments across Africa's industries.</p>
+    </div>
+    <div class="products-intro reveal">
+      <div>
+        <h3>Bruker Instruments — The Gold Standard in Industrial Analytics</h3>
+        <p>Bruker has pioneered high-performance scientific instruments for over six decades. Their technology underpins quality control, elemental analysis, material characterization, and food safety verification in leading industrial operations worldwide. Onward Technology brings this capability directly to African industry, with local supply, deployment, calibration, and technical support.</p>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center">
+        <div style="text-align:center">
+          <div style="font-family:var(--font-display);font-size:64px;font-weight:800;color:var(--cyan);line-height:1">60+</div>
+          <div style="font-size:15px;color:rgba(255,255,255,0.55);margin-top:8px">Years of Bruker<br>Instrument Innovation</div>
+        </div>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-cat">Elemental Analysis · XRF</div>
+        <div class="product-name">TITAN Handheld XRF Analyzer</div>
+        <div class="product-desc">A handheld XRF analyzer built for industrial conditions. Material identification and elemental analysis you can rely on — with a tough dust, water, chemical, and shock-resistant casing for everyday field and industrial use. Ideal for mining, alloy sorting, and material verification.</div>
+        <span class="bruker-tag">Bruker Certified</span>
+      </div>
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-cat">FT-IR Spectroscopy</div>
+        <div class="product-name">VERTEX NEO Ultra FT-IR Spectrometer</div>
+        <div class="product-desc">The top-tier bench-top vacuum FT-IR spectrometer offering the highest resolution, broadest spectral range, and best signal-to-noise ratio available. Full automation capability for demanding research and industrial quality control applications.</div>
+        <span class="bruker-tag">Bruker Certified</span>
+      </div>
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-cat">Dairy & Food Quality · FT-NIR</div>
+        <div class="product-name">MOVE-T Liquid Dairy Analyzer</div>
+        <div class="product-desc">A compact FT-NIR analyzer for rapid, reliable analysis of milk, liquid dairy products, and plant-based alternatives. 2-in-1 sample handling for efficient quality control in food processing and dairy operations — ensuring product consistency and regulatory compliance.</div>
+        <span class="bruker-tag">Bruker Certified</span>
+      </div>
+      <div class="product-card reveal reveal-delay-4">
+        <div class="product-cat">Elemental Analysis · WDXRF</div>
+        <div class="product-name">S8 TIGER Series 3 WDXRF</div>
+        <div class="product-desc">A versatile, high-performance wavelength-dispersive XRF spectrometer for advanced elemental analysis in both industry and research. From cement and steel to mining and environmental samples — the S8 TIGER delivers the accuracy and throughput modern operations demand.</div>
+        <span class="bruker-tag">Bruker Certified</span>
+      </div>
+      <div class="product-card reveal reveal-delay-5">
+        <div class="product-cat">Data & Digital Infrastructure</div>
+        <div class="product-name">Industrial Data Acquisition Systems</div>
+        <div class="product-desc">Hardware and software systems for collecting, transmitting, and storing operational and measurement data across industrial environments. Integrated with Onward Technology's dashboard and analytics platforms for seamless data flow from sensor to decision.</div>
+      </div>
+      <div class="product-card reveal reveal-delay-6">
+        <div class="product-cat">Digital Platforms</div>
+        <div class="product-name">Operational Intelligence Dashboards</div>
+        <div class="product-desc">Custom-built operational dashboards providing real-time KPI visibility at every management level — from plant floor to the boardroom. Powered by the Onward Partners Industry 4.0 platform, with local customization and deployment by Onward Technology's engineering team.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── METRICS ─────────────────────────────────────────────── -->
+<section id="metrics">
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="metric-cell reveal">
+        <div class="metric-num">10–20<span>%</span></div>
+        <div class="metric-label">Efficiency gains from data-driven operations</div>
+      </div>
+      <div class="metric-cell reveal reveal-delay-1">
+        <div class="metric-num">350<span>+</span></div>
+        <div class="metric-label">Companies using the Onward Partners platform globally</div>
+      </div>
+      <div class="metric-cell reveal reveal-delay-2">
+        <div class="metric-num">6<span>+</span></div>
+        <div class="metric-label">Industries actively served across Africa</div>
+      </div>
+      <div class="metric-cell reveal reveal-delay-3">
+        <div class="metric-num">60<span>+</span></div>
+        <div class="metric-label">Years of Bruker instrumentation excellence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ─────────────────────────────────────────────────── -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-box reveal">
+      <span class="tag">Start Your Transformation</span>
+      <h2>Ready to Build a Smarter Industrial Operation?</h2>
+      <p>Whether you're beginning your Industry 4.0 journey, scaling existing digital initiatives, or looking for precision measurement solutions — Onward Technology delivers from strategy through deployment.</p>
+      <div class="cta-actions">
+        <a href="#contact" class="btn-cyan">Request a Consultation →</a>
+        <a href="#services" class="btn-outline">Explore Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ─────────────────────────────────────────────── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="tag">Get In Touch</span>
+        <h2>Let's Transform Your Operations Together</h2>
+        <p>Tell us about your industrial challenges. Our team will respond within 24 hours with insights tailored to your sector and operational context.</p>
+        <div class="contact-details">
+          <div class="contact-detail">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-detail-label">Location</div>
+              <div class="contact-detail-value">Accra & Kumasi, Ghana — Serving West & Sub-Saharan Africa</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">📧</div>
+            <div>
+              <div class="contact-detail-label">Email</div>
+              <div class="contact-detail-value">blayebenezer@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-detail-label">Phone</div>
+              <div class="contact-detail-value">+233 249857038</div>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-icon">🤝</div>
+            <div>
+              <div class="contact-detail-label">Partnerships</div>
+              <div class="contact-detail-value">partners@onwardtechnology.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal reveal-delay-2">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="John"/>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Mensah"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Company</label>
+          <input type="text" placeholder="Your Organization"/>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@company.com"/>
+        </div>
+        <div class="form-group">
+          <label>Industry</label>
+          <select>
+            <option value="">Select your industry</option>
+            <option>Manufacturing</option>
+            <option>Oil & Gas / Energy</option>
+            <option>Mining & Minerals</option>
+            <option>Food & Beverage Processing</option>
+            <option>Utilities</option>
+            <option>Laboratory & Research</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Service of Interest</label>
+          <select>
+            <option value="">What can we help with?</option>
+            <option>Industrial Digital Transformation</option>
+            <option>Industrial Data & Intelligence Systems</option>
+            <option>Measurement & Analytical Solutions (Bruker)</option>
+            <option>Digital Platforms & Smart Operations</option>
+            <option>System Integration</option>
+            <option>Training & Capability Development</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell us about your operational challenges or what you're looking to achieve…"></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center" onclick="handleSubmit(event)">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="nav-logo" style="margin-bottom:0">
+          <div class="nav-logo-icon"></div>
+          <div>
+            <div class="nav-logo-text">Onward Technology</div>
+            <div class="nav-logo-sub">Industrial Digital Transformation</div>
+          </div>
+        </a>
+        <p>Enabling smart manufacturing and intelligent operations across Africa. Integrating digital platforms, industrial data systems, and advanced measurement technologies.</p>
+        <div class="footer-partners" style="margin-top:24px">
+          <span class="partner-chip">Bruker Partner</span>
+          <span class="partner-chip">Onward Partners</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Digital Transformation</a></li>
+          <li><a href="#services">Data & Intelligence</a></li>
+          <li><a href="#services">Measurement Solutions</a></li>
+          <li><a href="#services">Digital Platforms</a></li>
+          <li><a href="#services">System Integration</a></li>
+          <li><a href="#services">Training</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Industries</h4>
+        <ul>
+          <li><a href="#industries">Manufacturing</a></li>
+          <li><a href="#industries">Oil & Gas</a></li>
+          <li><a href="#industries">Mining</a></li>
+          <li><a href="#industries">Food Processing</a></li>
+          <li><a href="#industries">Utilities</a></li>
+          <li><a href="#industries">Laboratories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#partners">Our Partners</a></li>
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="https://www.bruker.com" target="_blank">Bruker.com ↗</a></li>
+          <li><a href="https://onward.partners" target="_blank">OnwardPartners ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Onward Technology. All rights reserved. Ghana, West Africa.</span>
+      <div class="footer-partners">
+        <span>In partnership with</span>
+        <span class="partner-chip">Onward Partners</span>
+        <span class="partner-chip">Bruker Corporation</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── NAV SCROLL ────────────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── MOBILE MENU ───────────────────────────────────────────
+function toggleMobile() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// ── SCROLL REVEAL ──────────────────────────────────────────
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => observer.observe(el));
+
+// ── COUNTER ANIMATION ─────────────────────────────────────
+function animateCount(el, target, suffix, duration = 1800) {
+  let start = null;
+  const step = (ts) => {
+    if (!start) start = ts;
+    const progress = Math.min((ts - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+const metricObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const nums = e.target.querySelectorAll('.metric-num');
+      nums[0]?.querySelector('span') && null; // skip complex ones
+      metricObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('#metrics').forEach(s => metricObserver.observe(s));
+
+// ── ACTIVE NAV LINK ────────────────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === '#' + e.target.id
+          ? 'rgba(255,255,255,1)'
+          : '';
+      });
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => navObserver.observe(s));
+
+// ── FORM SUBMIT ────────────────────────────────────────────
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target;
+  btn.textContent = '✓ Message Sent — We\'ll be in touch shortly';
+  btn.style.background = '#16a34a';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.textContent = 'Send Message →';
+    btn.style.background = '';
+    btn.disabled = false;
+  }, 4000);
+}
+
+// ── SMOOTH NAV OFFSET ──────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
